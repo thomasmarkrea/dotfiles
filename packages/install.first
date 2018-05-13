@@ -3,6 +3,7 @@
 # install packages
 
 . ./functions/functions
+cd "$(dirname "$0")"
 
 info "installing packages"
 
