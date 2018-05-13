@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+#
+
+. ./functions/functions
+
+echo "setting up R..."
+
+DIR=$(dirname "$0")
+cd "$DIR"
+
+# sudo Rscript packages.install
+say_hello

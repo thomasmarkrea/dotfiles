@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# Run all dotfile installers
+
+. ./functions/functions
+
+echo "installing dotfiles"
+
+install install.first
+# install install

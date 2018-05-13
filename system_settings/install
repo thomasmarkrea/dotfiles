@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "Installing System Settings"
+
+# enable tap-to-click
+# gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true

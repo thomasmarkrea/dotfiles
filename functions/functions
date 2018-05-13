@@ -1,0 +1,39 @@
+say_hello () {
+  echo "Hello"
+}
+
+blue=$(tput setaf 4)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+normal=$(tput sgr0)
+
+info () {
+  printf "\r  [ ${blue}..${normal} ] $1\n"
+}
+
+success () {
+  printf "\r  [ ${green}OK${normal} ] $1\n"
+}
+
+fail () {
+  printf "\r  [${red}FAIL${normal}] $1\n"
+  exit
+}
+
+install () {
+  find . -mindepth 2 -name $1 | while read installer ; do bash ${installer} ; done
+}
+
+symlink () {
+  echo "link"
+}
+
+update_and_upgrade () {
+  sudo apt update && sudo apt upgrade
+}
+
+install () {
+  sudo apt install $1 &> /dev/null &&
+    success "$1" ||
+      fail "$1"
+}

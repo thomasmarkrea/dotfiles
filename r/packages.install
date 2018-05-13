@@ -1,0 +1,17 @@
+# instal R packages from lists
+
+# source packages.cran.list
+cran.list <- read.table('~/.dotfiles/r/packages.cran.list',
+                        col.names = 'name',
+                        stringsAsFactors = FALSE)
+
+# source packages.git.list
+git.list <- read.table('~/.dotfiles/r/packages.git.list',
+                       col.names = 'name',
+                       stringsAsFactors = FALSE)
+
+# install cran packages
+install.packages(cran.list$name)
+
+# install github packages
+devtools::install_github(git.list$name)

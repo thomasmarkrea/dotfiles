@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#
+# add repositories
+
+. ./functions/functions
+
+# atom
+gpg --fetch-keys https://packagecloud.io/AtomEditor/atom/gpgkey &> /dev/null &&
+  gpg --export -a 0A0FAB860D48560332EFB581B75442BBDE9E3B09 | sudo apt-key add - &> /dev/null &&
+    echo deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main | sudo tee /etc/apt/sources.list.d/atom.list &> /dev/null &&
+      success "atom" ||
+        fail "atom"
+
+# spotify
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410 &> /dev/null &&
+  gpg --export -a 0DF731E45CE24F27EEEB1450EFDC8610341D9410 | sudo apt-key add - &> /dev/null &&
+    echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list &> /dev/null &&
+      success "spotify" ||
+        fail "spotify"
+
+# r
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9 &> /dev/null &&
+  gpg --export -a E084DAB9 | sudo apt-key add - &> /dev/null &&
+    echo deb https://cloud.r-project.org//bin/linux/ubuntu artful/ | sudo tee /etc/apt/sources.list.d/r.list &> /dev/null &&
+      success "r" ||
+        fail "r"

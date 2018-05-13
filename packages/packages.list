@@ -1,0 +1,22 @@
+# system
+gdebi-core
+
+# spotify
+spotify-client
+
+# atom
+atom
+atom-beta
+
+# r
+r-base
+r-base-dev
+
+# r devtools dependencies
+build-essential
+libcurl4-gnutls-dev
+libxml2-dev
+libssl-dev
+
+# boxes (vm)
+gnome-boxes

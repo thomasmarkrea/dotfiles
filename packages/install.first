@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#
+# install packages
+
+. ./functions/functions
+
+info "installing packages"
+
+# add repos
+info "add repositories"
+bash ./add_repos
+
+# update system
+info "updating system"
+update_and_upgrade
+
+# install packages from packages.list
+info "installing packages from package.list"
+sed 's/#.*//' packages.list | xargs install
+
+# mk temp dir for dl .deb
+mkdir temp
+
+# dl .deb from download.list
+echo "downloading .deb from download.list"
+sed 's/#.*//' download.list | wget --directory-prefix=temp
+
+# gdebi install deb from temp dir
+echo "installing packages from download.list"
+ls $PWD/temp/* | xargs sudo gdebi
+
+# rm dl temp dir
+rm -rf temp
