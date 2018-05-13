@@ -2,7 +2,7 @@
 #
 # add repositories
 
-. ./functions/functions
+. ../functions/functions
 
 # atom
 gpg --fetch-keys https://packagecloud.io/AtomEditor/atom/gpgkey &> /dev/null &&
