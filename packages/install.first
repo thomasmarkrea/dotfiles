@@ -17,7 +17,12 @@ update_and_upgrade
 
 # install packages from packages.list
 info "installing packages from package.list"
-sed 's/#.*//' packages.list | xargs install_packages
+# sed 's/#.*//' packages.list | xargs install_packages
+for i in $( sed 's/#.*//' packages.list ); do
+  apt -y install $i &> /dev/null &&
+    success $i ||
+      fail $i
+done
 
 # # mk temp dir for dl .deb
 # mkdir temp
