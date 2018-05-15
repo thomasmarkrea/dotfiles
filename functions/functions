@@ -12,11 +12,11 @@ info () {
 }
 
 success () {
-  printf "\r  [ ${green}OK${normal} ] $1\n"
+  printf "\r\033[2K  [ ${green}OK${normal} ] $1\n"
 }
 
 fail () {
-  printf "\r  [${red}FAIL${normal}] $1\n"
+  printf "\r\033[2K  [${red}FAIL${normal}] $1\n"
   exit
 }
 
