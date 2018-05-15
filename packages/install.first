@@ -5,20 +5,21 @@
 . ./functions/functions
 cd "$(dirname "$0")"
 
-info "installing packages"
+section "installing packages"
 
 # add repos
-info "adding repositories"
+section "adding repositories"
 bash ./add_repos
 
 # update system
-info "updating system"
+section "updating system"
 update_and_upgrade
 
 # install packages from packages.list
-info "installing packages from package.list"
+section "installing packages from package.list"
 # sed 's/#.*//' packages.list | xargs install_packages
 for i in $( sed 's/#.*//' packages.list ); do
+  info $1
   sudo apt -y install $i &> /dev/null &&
     success $i ||
       fail $i
