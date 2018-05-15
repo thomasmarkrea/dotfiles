@@ -19,7 +19,7 @@ update_and_upgrade
 info "installing packages from package.list"
 # sed 's/#.*//' packages.list | xargs install_packages
 for i in $( sed 's/#.*//' packages.list ); do
-  apt -y install $i &> /dev/null &&
+  sudo apt -y install $i &> /dev/null &&
     success $i ||
       fail $i
 done

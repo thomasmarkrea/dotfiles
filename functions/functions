@@ -29,7 +29,7 @@ symlink () {
 }
 
 update_and_upgrade () {
-  sudo apt update && sudo apt upgrade
+  sudo apt update && sudo apt -y upgrade
 }
 
 install_packages () {
