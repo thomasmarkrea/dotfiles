@@ -4,7 +4,7 @@
 
 . ./functions/functions
 
-section "installing dotfiles"
+h1 "installing dotfiles"
 
 install install.first
 # install install

@@ -7,8 +7,16 @@ green=$(tput setaf 2)
 red=$(tput setaf 1)
 normal=$(tput sgr0)
 
-section () {
+h1 () {
   printf "\r  =====> $1\n"
+}
+
+h2 () {
+  printf "\r    =====> $1\n"
+}
+
+h3 () {
+  printf "\r      =====> $1\n"
 }
 
 info () {
