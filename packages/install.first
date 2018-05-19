@@ -5,18 +5,18 @@
 . ./functions/functions
 cd "$(dirname "$0")"
 
-h2 "installing packages"
+h1 "installing packages"
 
 # add repos
-h3 "adding repositories"
+h2 "adding repositories"
 bash ./add_repos
 
 # update system
-h3 "updating system"
+h2 "updating system"
 update_and_upgrade
 
 # install packages from packages.list
-h3 "installing packages from package.list"
+h2 "installing packages from package.list"
 # sed 's/#.*//' packages.list | xargs install_packages
 for i in $( sed 's/#.*//' packages.list ); do
   info $i

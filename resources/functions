@@ -8,28 +8,16 @@ red=$(tput setaf 1)
 normal=$(tput sgr0)
 
 title() {
-printf "
-#    _____        _    __ _ _
-#   |  __ \      | |  / _(_) |
-#   | |  | | ___ | |_| |_ _| | ___  ___
-#   | |  | |/ _ \| __|  _| | |/ _ \/ __|
-#   | |__| | (_) | |_| | | | |  __/\__ \
-#   |_____/ \___/ \__|_| |_|_|\___||___/
-#
-#
-"
+  DIR=$(dirname "${BASH_SOURCE[0]}")
+  cat ${DIR}/title
 }
 
 h1 () {
-  printf "\r  =====> $1\n"
+  printf "\r  ${green}$1${normal}\n"
 }
 
 h2 () {
-  printf "\r    =====> $1\n"
-}
-
-h3 () {
-  printf "\r      =====> $1\n"
+  printf "\r  =====> $1\n"
 }
 
 info () {
