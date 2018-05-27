@@ -42,8 +42,11 @@ symlink () {
 }
 
 update_and_upgrade () {
+  info "update"
   sudo apt update &> /dev/null &&
-    sudo apt -y upgrade &> /dev/null
+    sudo apt -y upgrade &> /dev/null &&
+      success "update" ||
+        fail "update"
 }
 
 install_packages () {
