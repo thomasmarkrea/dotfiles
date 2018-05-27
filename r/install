@@ -2,7 +2,7 @@
 #
 #
 
-. ./functions/functions
+. ./resources/functions
 
 echo "setting up R..."
 

@@ -2,7 +2,7 @@
 #
 # install packages
 
-. ./functions/functions
+. ./resources/functions
 cd "$(dirname "$0")"
 
 h1 "installing packages"
@@ -17,7 +17,6 @@ update_and_upgrade
 
 # install packages from packages.list
 h2 "installing packages from package.list"
-# sed 's/#.*//' packages.list | xargs install_packages
 for i in $( sed 's/#.*//' packages.list ); do
   info $i
   sudo apt -y install $i &> /dev/null &&

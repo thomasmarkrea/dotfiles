@@ -2,7 +2,7 @@
 #
 # add repositories
 
-. ../functions/functions
+. ../resources/functions
 
 # atom
 info "atom"
