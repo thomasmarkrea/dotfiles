@@ -36,9 +36,14 @@ for i in $( sed 's/#.*//' download.list ); do
       fail $(basename $i)
 done
 
-# # gdebi install deb from temp dir
-# echo "installing packages from download.list"
-# ls $PWD/temp/* | xargs sudo gdebi
-#
-# # rm dl temp dir
-# rm -rf temp
+# gdebi install deb from temp dir
+h2 "installing packages from download.list"
+for i in $( ls $PWD/temp/* ); do
+  info $(basename $i)
+  sudo gdebi $i &> /dev/null &&
+    success $(basename $i) ||
+      fail $(basename $i)
+done
+
+# rm dl temp dir
+rm -rf temp
