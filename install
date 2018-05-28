@@ -4,9 +4,9 @@
 
 . ./resources/functions
 
-title
-
 get_sudo
+
+title
 
 install install.first
 # install install
