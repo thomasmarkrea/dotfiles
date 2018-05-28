@@ -6,5 +6,7 @@
 
 title
 
+get_sudo
+
 install install.first
 # install install
