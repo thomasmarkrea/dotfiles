@@ -13,11 +13,11 @@ title() {
 }
 
 h1 () {
-  printf "\r  ${green}$1${normal}\n"
+  printf "\r ${green}$1${normal}\n"
 }
 
 h2 () {
-  printf "\r  =====> $1\n"
+  printf "\r ===> $1\n"
 }
 
 info () {
