@@ -1,6 +1,4 @@
-say_hello () {
-  echo "Hello"
-}
+# helper functions
 
 blue=$(tput setaf 4)
 green=$(tput setaf 2)
@@ -49,10 +47,4 @@ update_and_upgrade () {
     sudo apt -y upgrade &>> log &&
       success "update" ||
         fail "update"
-}
-
-install_packages () {
-  sudo apt install $1 &>> log &&
-    success "$1" ||
-      fail "$1"
 }
