@@ -24,13 +24,18 @@ for i in $( sed 's/#.*//' packages.list ); do
       fail $i
 done
 
-# # mk temp dir for dl .deb
-# mkdir temp
-#
-# # dl .deb from download.list
-# echo "downloading .deb from download.list"
-# sed 's/#.*//' download.list | wget --directory-prefix=temp
-#
+# mk temp dir for dl .deb
+mkdir temp
+
+# dl .deb from download.list
+h2 "downloading .deb from download.list"
+for i in $( sed 's/#.*//' download.list ); do
+  info $i
+  wget --directory-prefix=temp $i &> /dev/null &&
+    success $i ||
+      fail $i
+done
+
 # # gdebi install deb from temp dir
 # echo "installing packages from download.list"
 # ls $PWD/temp/* | xargs sudo gdebi
