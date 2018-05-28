@@ -40,7 +40,7 @@ done
 h2 "installing packages from download.list"
 for i in $( ls $PWD/temp/* ); do
   info $(basename $i)
-  sudo gdebi $i &> /dev/null &&
+  sudo gdebi --n $i &> /dev/null &&
     success $(basename $i) ||
       fail $(basename $i)
 done
