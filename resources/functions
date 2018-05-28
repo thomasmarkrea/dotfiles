@@ -45,14 +45,14 @@ symlink () {
 
 update_and_upgrade () {
   info "update"
-  sudo apt update &> /dev/null &&
-    sudo apt -y upgrade &> /dev/null &&
+  sudo apt update &>> log &&
+    sudo apt -y upgrade &>> log &&
       success "update" ||
         fail "update"
 }
 
 install_packages () {
-  sudo apt install $1 &> /dev/null &&
+  sudo apt install $1 &>> log &&
     success "$1" ||
       fail "$1"
 }

@@ -19,7 +19,7 @@ update_and_upgrade
 h2 "installing packages from package.list"
 for i in $( sed 's/#.*//' packages.list ); do
   info $i
-  sudo apt -y install $i &> /dev/null &&
+  sudo apt -y install $i &>> log &&
     success $i ||
       fail $i
 done
@@ -31,7 +31,7 @@ mkdir temp
 h2 "downloading .deb from download.list"
 for i in $( sed 's/#.*//' download.list ); do
   info $(basename $i)
-  wget --directory-prefix=temp $i &> /dev/null &&
+  wget --directory-prefix=temp $i &>> log &&
     success $(basename $i) ||
       fail $(basename $i)
 done
@@ -40,7 +40,7 @@ done
 h2 "installing packages from download.list"
 for i in $( ls $PWD/temp/* ); do
   info $(basename $i)
-  sudo gdebi --n $i &> /dev/null &&
+  sudo gdebi --n $i &>> log &&
     success $(basename $i) ||
       fail $(basename $i)
 done
