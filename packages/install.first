@@ -2,8 +2,9 @@
 #
 # install packages
 
-. ./resources/functions
 cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
 
 h1 "installing packages"
 
