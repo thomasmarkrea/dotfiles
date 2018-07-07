@@ -38,7 +38,11 @@ install () {
 }
 
 symlink () {
-  echo "link"
+  src=$1
+  dst=$2
+  ln -s "$1" "$2" &&
+  success "linked $1 to $2" ||
+    fail "error linking $1 to $2"
 }
 
 update_and_upgrade () {
