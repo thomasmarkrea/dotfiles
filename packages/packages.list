@@ -1,5 +1,7 @@
 # system
 gdebi-core
+libsecret-1-0
+libsecret-1-dev
 
 # spotify
 spotify-client
