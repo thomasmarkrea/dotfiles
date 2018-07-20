@@ -10,3 +10,6 @@ h1 "setting up git"
 
 # link files
 symlink .gitcong ~
+
+# set up git-cred-helper
+make -C /usr/share/doc/git/contrib/credential/libsecret
