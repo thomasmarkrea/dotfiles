@@ -53,8 +53,8 @@ link_file () {
   # check if file already exists and backup
   if [ -f "$dst" ]
   then
-    mv "$dist" "${dst}.backup"
-    success "moved $dist to ${dst}.backup"
+    mv "$dst" "${dst}.backup"
+    success "moved $dst to ${dst}.backup"
   fi
 
   # creat symlink
