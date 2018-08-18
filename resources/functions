@@ -53,14 +53,17 @@ link_file () {
   # check if file already exists and backup
   if [ -f "$dst" ]
   then
-    mv "$dst" "${dst}.backup"
-    success "moved $dst to ${dst}.backup"
+    info "backing up $dst"
+    mv "$dst" "${dst}.backup" &&
+      success "moved $dst to ${dst}.backup" ||
+        fail "faild to backup $dst"
   fi
 
   # creat symlink
+  info "linking $src"
   ln -s "$src" "$dst" &&
-  success "linked $src to $dst" ||
-    fail "error linking $src to $dst"
+    success "linked $src to $dst" ||
+      fail "error linking $src to $dst"
 }
 
 update_and_upgrade () {
