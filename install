@@ -8,5 +8,6 @@ get_sudo
 
 title
 
+install_dotfiles
 install install.first
 # install install

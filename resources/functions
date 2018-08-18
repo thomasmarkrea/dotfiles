@@ -37,12 +37,29 @@ install () {
   find . -mindepth 2 -name $1 | while read installer ; do bash ${installer} ; done
 }
 
-symlink () {
+install_dotfiles () {
+  for src in $(find $HOME/.dotfiles/ -maxdepth 2 -name '*.symlink')
+  do
+    dst="$HOME/.$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
+link_file () {
   src=$1
   dst=$2
-  ln -s "$1" "$2" &&
-  success "linked $1 to $2" ||
-    fail "error linking $1 to $2"
+
+  # check if file already exists and backup
+  if [ -f "$dst" ]
+  then
+    mv "$dist" "${dst}.backup"
+    success "moved $dist to ${dst}.backup"
+  fi
+
+  # creat symlink
+  ln -s "$src" "$dst" &&
+  success "linked $src to $dst" ||
+    fail "error linking $src to $dst"
 }
 
 update_and_upgrade () {
