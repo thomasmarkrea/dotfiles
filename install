@@ -2,8 +2,8 @@
 #
 # Run all dotfile installers
 
+cd "$(dirname "$0")"
 . ./resources/functions
-
 get_sudo
 
 title
