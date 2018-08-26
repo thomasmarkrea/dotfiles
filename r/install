@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #
-#
+# setting up r
 
-. ./resources/functions
+cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
 
-echo "setting up R..."
+h1 "setting up r"
 
-DIR=$(dirname "$0")
-cd "$DIR"
+# link files
+install_dotfiles
 
-# sudo Rscript packages.install
-say_hello
+# install packages
