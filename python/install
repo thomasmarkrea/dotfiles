@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #
-#
+# setting up python
 
-echo "setting up Python..."
+h1 "setting up python..."

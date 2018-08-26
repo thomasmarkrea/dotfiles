@@ -38,8 +38,8 @@ install () {
 }
 
 install_dotfiles () {
-  h1 "installing dotfiles"
-  for src in $(find $HOME/.dotfiles/ -maxdepth 2 -name '*.symlink')
+  h2 "installing dotfiles"
+  for src in $(find -name '*.symlink')
   do
     dst="$HOME/$(basename "${src%.*}")"
     link_file "$src" "$dst"

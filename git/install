@@ -9,7 +9,7 @@ get_sudo
 h1 "setting up git"
 
 # link files
-symlink .gitcong ~
+install_dotfiles
 
 # set up git-cred-helper
 make -C /usr/share/doc/git/contrib/credential/libsecret

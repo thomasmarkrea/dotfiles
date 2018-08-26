@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
+#
+# setting up system settings
 
-echo "Installing System Settings"
+cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
+
+h1 "setting up system settings"
 
 # enable tap-to-click
 # gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true

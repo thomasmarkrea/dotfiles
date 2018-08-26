@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 #
-#
+# setting up atom
 
-echo "setting up Atom..."
+h1 "setting up atom..."
