@@ -2,4 +2,8 @@
 #
 # setting up python
 
-h1 "setting up python..."
+cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
+
+h1 "setting up python"
