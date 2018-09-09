@@ -2,6 +2,7 @@
 #
 # add repositories
 
+cd "$(dirname "$0")"
 . ../resources/functions
 
 # atom
@@ -21,7 +22,7 @@ gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBD
         fail "spotify"
 
 # r
-info r
+info "r"
 gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E084DAB9 &>> log &&
   gpg --export -a E084DAB9 | sudo apt-key add - &>> log &&
     echo deb https://cloud.r-project.org//bin/linux/ubuntu artful/ | sudo tee /etc/apt/sources.list.d/r.list &>> log &&
