@@ -11,3 +11,7 @@ info "empty"
 
 # enable tap-to-click
 # gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+# switch scroll direction
+#
+#
