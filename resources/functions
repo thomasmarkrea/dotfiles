@@ -33,7 +33,7 @@ fail () {
   exit
 }
 
-install () {
+run () {
   find . -mindepth 2 -name $1 | while read installer ; do bash ${installer} ; done
 }
 

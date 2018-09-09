@@ -8,5 +8,5 @@ get_sudo
 
 title
 
-install install.first
-install install
+run install.first
+run install
