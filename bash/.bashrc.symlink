@@ -56,7 +56,7 @@ __colour_enabled() {
 }
 unset __colourise_prompt && __colour_enabled && __colourise_prompt=1
 
-_set_bash_prompt() {
+__set_bash_prompt() {
     # Save the exit status of the last command
     local exit="$?"
 
