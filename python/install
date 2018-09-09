@@ -7,3 +7,4 @@ cd "$(dirname "$0")"
 get_sudo
 
 h1 "setting up python"
+info "empty"
