@@ -13,3 +13,6 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
 # turn on natural-scrolling
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+
+# speed up touch pad
+gsettings set org.gnome.desktop.peripherals.touchpad speed 0.5
