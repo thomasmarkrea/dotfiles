@@ -37,6 +37,10 @@ run () {
   find . -mindepth 2 -name $1 | while read installer ; do bash ${installer} ; done
 }
 
+add_repos () {
+  find $PWD -name '*.repo' | while read repo ; do bash ${repo} ; done
+}
+
 install_dotfiles () {
   h2 "installing dotfiles"
   for src in $(find $PWD -name '*.symlink')
