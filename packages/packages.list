@@ -20,5 +20,5 @@ libcurl4-gnutls-dev
 libxml2-dev
 libssl-dev
 
-# boxes (vm)
-gnome-boxes
+# virtualbox
+virtualbox
