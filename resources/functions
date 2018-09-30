@@ -38,7 +38,41 @@ run () {
 }
 
 add_repos () {
+  h2 "adding repositories"
   find $PWD -name '*.repo' | while read repo ; do bash ${repo} ; done
+}
+
+install_packages () {
+  h2 "installing packages from package.list"
+  for i in $( sed 's/#.*//' package.list ); do
+    info $i
+    sudo apt -y install $i &>> log &&
+      success $i ||
+        fail $i
+  done
+}
+
+dl_deb () {
+  h2 "downloading .deb from download.list"
+  mkdir temp
+  for i in $( sed 's/#.*//' download.list ); do
+    info $(basename $i)
+    wget --directory-prefix=temp $i &>> log &&
+      success $(basename $i) ||
+        fail $(basename $i)
+  done
+}
+
+install_deb () {
+  h2 "installing packages from download.list"
+  for i in $( ls $PWD/temp/* ); do
+    info $(basename $i)
+    sudo gdebi --n $i &>> log &&
+      success $(basename $i) ||
+        fail $(basename $i)
+  done
+
+  rm -rf temp
 }
 
 install_dotfiles () {
