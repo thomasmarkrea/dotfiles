@@ -39,7 +39,7 @@ run () {
 
 add_repos () {
   h2 "adding repositories"
-  find $PWD -name '*.repo' | while read repo ; do bash ${repo} ; done
+  find $PWD -name '*.rep' | while read rep ; do bash ${rep} ; done
 }
 
 install_packages () {
