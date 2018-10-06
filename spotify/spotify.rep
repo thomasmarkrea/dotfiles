@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# add repositories
+# https://www.spotify.com/uk/download/linux/
+
+cd "$(dirname "$0")"
+. ../resources/functions
+
+
+info "spotify"
+sudo apt-key adv \
+  --keyserver hkp://keyserver.ubuntu.com:80 \
+  --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90 &>> log &&
+echo deb http://repository.spotify.com stable non-free | \
+  sudo tee /etc/apt/sources.list.d/spotify.list &>> log &&
+success "spotify" || fail "spotify"
