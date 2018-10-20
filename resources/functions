@@ -188,7 +188,7 @@ install_dotfiles () {
 
   for src in $(find ${PWD} -name '*.symlink'); do
     local dst="${dir}/$(basename "${src%.*}")"
-    link_file "${src}" "${dst}"
+    link_file "${src}" "${dir}"
   done
 }
 
@@ -203,7 +203,8 @@ link_file () {
   # ##
 
   local src=$1
-  local dst=$2
+  local dir=$2
+  local dst="${dir}/$(basename "${src%.*}")"
 
   # check if file already exists and backup
   if [ -f "${dst}" ]; then
@@ -211,6 +212,14 @@ link_file () {
     mv "${dst}" "${dst}.backup" &&
       success "moved ${dst} to ${dst}.backup" ||
         fail "faild to backup ${dst}"
+  fi
+
+  # create parent dir if doesn't exist
+  if [ ! -d "${dir}" ]; then
+    info "creating $dir"
+    mkdir -p ${dir} &&
+      success "created ${dir}" ||
+        fail "faild to created ${dir}"
   fi
 
   # creat symlink

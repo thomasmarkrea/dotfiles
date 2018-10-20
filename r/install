@@ -13,7 +13,7 @@ get_sudo
 h1 "setting up r"
 
 # create dir to hold r packages
-mkdir ~/R/library
+mkdir -p ~/R/library
 
 install_dotfiles
 add_reps
