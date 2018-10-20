@@ -6,7 +6,8 @@ cd "$(dirname "$0")"
 . ./resources/functions
 get_sudo
 
+
 title
 
-run install.first
+update_sys
 run install

@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 #
 # setting up r
+#
+# TODO:
+# param download.list & rep?
 
 cd "$(dirname "$0")"
 . ../resources/functions
 get_sudo
 
+
 h1 "setting up r"
 
-# link files
-install_dotfiles
+# create dir to hold r packages
+mkdir ~/R/library
 
-# install packages
+install_dotfiles
+add_reps
+install_packages
+dl_deb
+install_deb
+
+# install r packages
+h2 "installing r packages"
+bash package.install &>> log

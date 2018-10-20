@@ -1,0 +1,12 @@
+# install dependency
+gdebi-core
+
+# r
+r-base
+r-base-dev
+
+# r devtools dependencies
+build-essential
+libcurl4-gnutls-dev
+libxml2-dev
+libssl-dev

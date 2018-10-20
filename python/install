@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 #
 # setting up python
+#
+# TODO:
+# set up virtual environments
+# https://docs.python.org/3/library/venv.html
 
 cd "$(dirname "$0")"
 . ../resources/functions
 get_sudo
 
+
 h1 "setting up python"
-info "empty"
+
+install_packages

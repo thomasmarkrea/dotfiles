@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #
-# setting up spotify
+# setting up chrome
 
 cd "$(dirname "$0")"
 . ../resources/functions
 get_sudo
 
 
-h1 "setting up spotify"
+h1 "setting up chrome"
 
-add_reps
 install_packages
+dl_deb
+install_deb

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# setting up npm
+
+cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
+
+
+h1 "setting up npm"
+
+install_dotfiles
+install_packages
+
+# install nvm
+# https://github.com/creationix/nvm
+# https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
+h2 "installing nvm"
+info "nvm"
+curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash &>> log &&
+  success "nvm" ||
+    fail "nvm"

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# add repository
+# https://flight-manual.atom.io/getting-started/sections/installing-atom/
+
+cd "$(dirname "$0")"
+. ../resources/functions
+
+
+info "atom"
+curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | \
+  sudo apt-key add - &>> log &&
+echo deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main | \
+  sudo tee /etc/apt/sources.list.d/atom.list &>> log &&
+success "atom" || fail "atom"

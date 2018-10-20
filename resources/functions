@@ -1,120 +1,283 @@
 # helper functions
 
-blue=$(tput setaf 4)
-green=$(tput setaf 2)
-red=$(tput setaf 1)
-normal=$(tput sgr0)
+# set colours
+BLUE=$(tput setaf 4)
+GREEN=$(tput setaf 2)
+RED=$(tput setaf 1)
+NORMAL=$(tput sgr0)
 
 title() {
-  DIR=$(dirname "${BASH_SOURCE[0]}")
-  cat ${DIR}/title
+  # ##
+  # prints title from file
+  #
+  # Args:
+  #   none
+  # ##
+
+  local dir=$(dirname "${BASH_SOURCE[0]}")
+  cat ${dir}/title
 }
 
 h1 () {
+  # ##
+  # print section title
+  #
+  # Args:
+  #   txt - section title
+  # ##
+
+  local ttl=$1
+
   printf "\r ====================================\n"
-  printf "\r $1\n"
+  printf "\r ${ttl}\n"
   printf "\r ====================================\n"
 }
 
 h2 () {
-  printf "\r ===> $1\n"
+  # ##
+  # print function description
+  #
+  # Args:
+  #   dsc - function description
+  # ##
+
+  local dsc=$1
+
+  printf "\r ===> ${dsc}\n"
 }
 
 info () {
-  printf "\r  [ ${blue}..${normal} ] $1\n"
+  # ##
+  # print info text
+  #
+  # Args:
+  #   inf - info text
+  # ##
+
+  local inf=$1
+
+  printf "\r  [ ${BLUE}..${NORMAL} ] ${inf}\n"
 }
 
 success () {
-  printf "\r\033[A\033[2K  [ ${green}OK${normal} ] $1\n"
+  # ##
+  # to be used with 'info'
+  # override info text with success message
+  #
+  # Args:
+  #   scc - success text
+  # ##
+
+  local scc=$1
+
+  printf "\r\033[A\033[2K  [ ${GREEN}OK${NORMAL} ] ${scc}\n"
 }
 
 fail () {
-  printf "\r\033[A\033[2K  [${red}FAIL${normal}] $1\n"
+  # ##
+  # to be used with 'info'
+  # override info text with fail message and exits script
+  #
+  # Args:
+  #   fl - fail text
+  # ##
+
+  local fl=$1
+
+  printf "\r\033[A\033[2K  [${red}FAIL${normal}] ${fl}\n"
   exit
 }
 
 run () {
-  find . -mindepth 2 -name $1 | while read installer ; do bash ${installer} ; done
+  # ##
+  # find files in the current dir and one level down and run
+  #
+  # Args:
+  #   name - name of files to run
+  # ##
+
+  local name=$1
+
+  find . -mindepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
 }
 
-add_repos () {
+add_reps () {
+  # ##
+  # find '.rep' files in current dir, run them and update system
+  #
+  # Args:
+  #   none
+  # ##
+
   h2 "adding repositories"
-  find $PWD -name '*.rep' | while read rep ; do bash ${rep} ; done
+
+  find ${PWD} -name '*.rep' | while read rep ; do bash ${rep} ; done
+  update_sys "update"
 }
 
 install_packages () {
+  # ##
+  # install packages from 'package.list'
+  #
+  # Args:
+  #   none
+  # ##
+
   h2 "installing packages from package.list"
+
   for i in $( sed 's/#.*//' package.list ); do
-    info $i
-    sudo apt -y install $i &>> log &&
-      success $i ||
-        fail $i
+    info ${i}
+    sudo apt-get -y install ${i} &>> log &&
+      success ${i} ||
+        fail ${i}
   done
 }
 
 dl_deb () {
+  # ##
+  # download files from 'download.list' into '/temp'
+  #
+  # Args:
+  #   none
+  # ##
+
   h2 "downloading .deb from download.list"
+
   mkdir temp
+
   for i in $( sed 's/#.*//' download.list ); do
-    info $(basename $i)
-    wget --directory-prefix=temp $i &>> log &&
-      success $(basename $i) ||
-        fail $(basename $i)
+    info $(basename ${i})
+    wget --directory-prefix=temp ${i} &>> log &&
+      success $(basename ${i}) ||
+        fail $(basename ${i})
   done
 }
 
 install_deb () {
+  # ##
+  # use with 'dl_deb'
+  # install packages in '/temp' then remove dir
+  #
+  # Args:
+  #   none
+  # ##
+
   h2 "installing packages from download.list"
-  for i in $( ls $PWD/temp/* ); do
-    info $(basename $i)
-    sudo gdebi --n $i &>> log &&
-      success $(basename $i) ||
-        fail $(basename $i)
+
+  for i in $( ls ${PWD}/temp/* ); do
+    info $(basename ${i})
+    sudo gdebi --n ${i} &>> log &&
+      success $(basename ${i}) ||
+        fail $(basename ${i})
   done
 
   rm -rf temp
 }
 
 install_dotfiles () {
+  # ##
+  # find '.symlink' files and create links
+  #
+  # Args:
+  #   dir - destination dir for link (default: $HOME)
+  # ##
+
   h2 "installing dotfiles"
-  for src in $(find $PWD -name '*.symlink')
-  do
-    dst="$HOME/$(basename "${src%.*}")"
-    link_file "$src" "$dst"
+
+  local dir=${1:-${HOME}}
+
+  for src in $(find ${PWD} -name '*.symlink'); do
+    local dst="${dir}/$(basename "${src%.*}")"
+    link_file "${src}" "${dst}"
   done
 }
 
 link_file () {
-  src=$1
-  dst=$2
+  # ##
+  # create symbolic link
+  # if file already exists move to '.backup'
+  #
+  # Args:
+  #   src - source file to link
+  #   dst - destination for link
+  # ##
+
+  local src=$1
+  local dst=$2
 
   # check if file already exists and backup
-  if [ -f "$dst" ]
-  then
-    info "backing up $dst"
-    mv "$dst" "${dst}.backup" &&
-      success "moved $dst to ${dst}.backup" ||
-        fail "faild to backup $dst"
+  if [ -f "${dst}" ]; then
+    info "backing up ${dst}"
+    mv "${dst}" "${dst}.backup" &&
+      success "moved ${dst} to ${dst}.backup" ||
+        fail "faild to backup ${dst}"
   fi
 
   # creat symlink
-  info "linking $src"
+  info "linking ${src}"
   ln -s "$src" "$dst" &&
-    success "linked $src to $dst" ||
-      fail "error linking $src to $dst"
+    success "linked ${src} to ${dst}" ||
+      fail "error linking ${src} to ${dst}"
 }
 
-update_and_upgrade () {
-  # https://raymii.org/s/tutorials/Silent-automatic-apt-get-upgrade.html
+update_sys () {
+  # ##
+  # update and upgrade the system
+  #
+  # Args:
+  #   opt - controls whether to update or update & upgrade
+  #         (values: update | upgrade)
+  # ##
+
+  h2 "updating system"
+
+  local opt=$1
+
+  case "${opt}" in
+    update)   update ;;
+    upgrade)  update && upgrade ;;
+    *)        update && upgrade ;;
+  esac
+}
+
+update () {
+  # ##
+  # update the system
+  #
+  # Args:
+  #   none
+  # ##
+
   info "update"
   sudo apt-get update &>> log &&
-    sudo DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade &>> log &&
-      success "update" ||
-        fail "update"
+    success "update" ||
+      fail "update"
+}
+
+upgrade () {
+  # ##
+  # silently upgrade the system
+  # https://raymii.org/s/tutorials/Silent-automatic-apt-get-upgrade.html
+  #
+  # Args:
+  #   none
+  # ##
+
+  info "upgrade"
+  sudo DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade &>> log &&
+   success "upgrade" ||
+    fail "upgrade"
 }
 
 get_sudo() {
+  # ##
+  # get and maintain sudo privileges
   # https://gist.github.com/cowboy/3118588
+  #
+  # Args:
+  #   none
+  # ##
+
   sudo -v
   while true; do
     sudo -n true

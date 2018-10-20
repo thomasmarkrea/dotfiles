@@ -6,5 +6,13 @@ cd "$(dirname "$0")"
 . ../resources/functions
 get_sudo
 
+
 h1 "setting up atom"
-info "empty"
+
+add_reps
+install_packages
+install_dotfiles ".atom"
+
+# install stom packages
+h2 "installing atom packages"
+apm i --packages-file package.atom.list

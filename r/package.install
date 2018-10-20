@@ -1,0 +1,24 @@
+#!/usr/bin/Rscript
+#
+# install R packages from lists
+
+# source packages.cran.list
+cran.list <- read.table('~/.dotfiles/r/package.cran.list',
+                        col.names = 'name',
+                        stringsAsFactors = FALSE)
+
+# source packages.git.list
+git.list <- read.table('~/.dotfiles/r/package.git.list',
+                       col.names = 'name',
+                       stringsAsFactors = FALSE)
+
+# install remotes
+# https://github.com/r-lib/remotes
+# adds functions to install from github and other remote repos
+source("https://install-github.me/r-lib/remotes")
+
+# install cran packages
+install.packages(cran.list$name)
+
+# install github packages
+remotes::install_github(git.list$name)

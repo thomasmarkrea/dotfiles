@@ -1,0 +1,12 @@
+# turn on tap-to-click
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+# turn on natural-scrolling
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+
+# speed up touch pad
+gsettings set org.gnome.desktop.peripherals.touchpad speed 0.5
+
+# fix touchpad bug
+# https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1722478
+sed -i 's/blacklist i2c_i801/# blacklist i2c_i801/' /etc/modprobe.d/blacklist.conf
