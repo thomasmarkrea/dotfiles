@@ -3,12 +3,12 @@
 # install R packages from lists
 
 # source packages.cran.list
-cran.list <- read.table('~/.dotfiles/r/package.cran.list',
+cran.list <- read.table('~/dotfiles/r/package.cran.list',
                         col.names = 'name',
                         stringsAsFactors = FALSE)
 
 # source packages.git.list
-git.list <- read.table('~/.dotfiles/r/package.git.list',
+git.list <- read.table('~/dotfiles/r/package.git.list',
                        col.names = 'name',
                        stringsAsFactors = FALSE)
 
