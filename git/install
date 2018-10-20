@@ -13,4 +13,4 @@ install_dotfiles
 install_packages
 
 # set up git-cred-helper
-sudo make -C /usr/share/doc/git/contrib/credential/libsecret
+sudo make -sC /usr/share/doc/git/contrib/credential/libsecret
