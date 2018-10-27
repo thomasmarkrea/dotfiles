@@ -1,0 +1,8 @@
+'.source.sql':
+  'Redshift Copy':
+    'prefix': 'copy'
+    'body': """
+      copy $1
+      from '$2'
+      iam_role '$3'
+    """
