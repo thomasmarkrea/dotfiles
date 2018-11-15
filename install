@@ -2,8 +2,6 @@
 #
 # Run all dotfile installers
 
-set -x
-
 cd "$(dirname "$0")"
 . ./resources/functions
 get_sudo

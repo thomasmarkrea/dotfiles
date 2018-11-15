@@ -11,6 +11,6 @@ info "r"
 sudo apt-key adv \
   --keyserver hkp://keyserver.ubuntu.com:80 \
   --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 &>> log &&
-echo deb https://cloud.r-project.org//bin/linux/ubuntu artful/ | \
+echo deb deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/ | \
   sudo tee /etc/apt/sources.list.d/r.list &>> log &&
 success "r" || fail "r"
