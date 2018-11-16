@@ -19,7 +19,7 @@ Each section contains an `install` file that handles the install and config of t
 ## install
 
 ```bash
-git pull https://github.com/thomasmarkrea/dotfiles.git
+git clone https://github.com/thomasmarkrea/dotfiles.git
 bash dotfiles/install
 ```
 
