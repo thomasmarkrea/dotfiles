@@ -13,6 +13,6 @@ add_reps
 install_packages
 install_dotfiles "${HOME}/.atom"
 
-# install stom packages
+# install atom packages
 h2 "installing atom packages"
 apm i --packages-file package.atom.list
