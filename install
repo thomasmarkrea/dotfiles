@@ -11,3 +11,5 @@ title
 
 update_sys
 run install
+
+source ${HOME}/.bashrc
