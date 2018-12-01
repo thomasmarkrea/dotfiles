@@ -4,3 +4,4 @@ for functions in $(find ${HOME}/dotfiles -name 'functions'); do
     *resources*) ;;
     *) . ${functions} ;;
   esac
+done
