@@ -11,7 +11,7 @@ h1 "setting up atom"
 
 add_reps
 install_packages
-install_dotfiles "${HOME}/.atom"
+install_symlinks "${HOME}/.atom"
 
 # install atom packages
 h2 "installing atom packages"

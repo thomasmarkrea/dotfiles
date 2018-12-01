@@ -13,9 +13,10 @@ get_sudo
 h1 "setting up r"
 
 # create dir to hold r packages
-mkdir -p ~/R/library
+mkdir -p ~/.R/library
 
 install_dotfiles
+install_symlinks "${HOME}/.R/snippets"
 add_reps
 install_packages
 dl_deb

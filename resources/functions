@@ -176,13 +176,31 @@ install_deb () {
 
 install_dotfiles () {
   # ##
+  # find all files that begin with '.' and symlink to $HOME
+  #
+  # Args:
+  #   none
+  # ##
+
+  h2 "installing dotfiles"
+
+  local dir=${HOME}
+
+  for src in $(find ${PWD} -name '.*'); do
+    local dst="${dir}/$(basename "${src%.*}")"
+    link_file "${src}" "${dir}"
+  done
+}
+
+install_symlinks () {
+  # ##
   # find '.symlink' files and create links
   #
   # Args:
   #   dir - destination dir for link (default: $HOME)
   # ##
 
-  h2 "installing dotfiles"
+  h2 "installing symlinks"
 
   local dir=${1:-${HOME}}
 
