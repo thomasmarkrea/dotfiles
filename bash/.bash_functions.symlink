@@ -1,0 +1,6 @@
+# Find all function files and load them
+for functions in $(find ${HOME}/dotfiles -name 'functions'); do
+  case "${functions}" in
+    *resources*) ;;
+    *) . ${functions} ;;
+  esac
