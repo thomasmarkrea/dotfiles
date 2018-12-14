@@ -1,0 +1,5 @@
+insync
+insync-nautilus
+
+# https://help.insynchq.com/installation-on-windows-linux-and-macos/getting-started-with-insync/linux-getting-your-gui-to-show-up
+gnome-shell-extension-appindicator
