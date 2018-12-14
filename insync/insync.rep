@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 
 rep=insync
 distro=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
-code_name=$(lsb_release -si)
+code_name=$(lsb_release -sc)
 
 info ${rep}
 sudo apt-key adv \
