@@ -24,6 +24,7 @@ install_deb
 
 # install r packages
 h2 "installing r packages"
-info "installing"
-Rscript package.install &>> log &&
-  success "done" || fail "faild"
+info "installing in background, check `package.log` for output"
+Rscript package.install &>> package.log &
+
+echo 'working?'
