@@ -32,8 +32,6 @@ bash dotfiles/install
 -   rStudio ([no config file]( https://github.com/rstudio/rstudio/issues/1607))
     -   configure (save workspace, .RData, Pane Layout)
 
-
-
 ## thanks
 
 [Zach Holman](https://github.com/holman/dotfiles) for ideas and some code.
