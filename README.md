@@ -29,7 +29,7 @@ bash dotfiles/install
     -   set up Extensions (Authy, LastPass, etc.)
 -   insync
     -   set folder, add accounts, start sync
--   rStudio ([no config file]( https://github.com/rstudio/rstudio/issues/1607))
+-   rStudio ([no config file](https://github.com/rstudio/rstudio/issues/1607))
     -   configure (save workspace, .RData, Pane Layout)
 
 ## thanks
