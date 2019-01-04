@@ -99,14 +99,14 @@ snippet shinyapp
 	shinyApp(ui, server)
 
 snippet header
-  #
-  # Name:   ${1}
-  #
-  # Desc:   ${2}
-  #
-  # Input:  ${3}
-  #
-  # Output: ${4}
-  #
-  # Auth:   ${5:Tom Rea (thomas.rea@ticketmaster.co.uk)}
-  #
+	#
+	# Name:   ${1}
+	#
+	# Desc:   ${2}
+	#
+	# Input:  ${3}
+	#
+	# Output: ${4}
+	#
+	# Auth:   ${5:Tom Rea (thomas.rea@ticketmaster.co.uk)}
+	#
