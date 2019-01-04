@@ -23,6 +23,17 @@ git clone https://github.com/thomasmarkrea/dotfiles.git
 bash dotfiles/install
 ```
 
+## manual steps
+
+-   Chrome
+    -   set up Extensions (Authy, LastPass, etc.)
+-   insync
+    -   set folder, add accounts, start sync
+-   rStudio ([no config file]( https://github.com/rstudio/rstudio/issues/1607))
+    -   configure (save workspace, .RData, Pane Layout)
+
+
+
 ## thanks
 
 [Zach Holman](https://github.com/holman/dotfiles) for ideas and some code.
