@@ -7,7 +7,6 @@
     userId: ""
   welcome:
     showOnStartup: false
-
 "source.python":
   editor:
     tabLength: 4
