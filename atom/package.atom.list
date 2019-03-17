@@ -7,6 +7,6 @@ linter-htmlhint
 linter-jsonlint
 linter-eslint
 linter-markdown
-linter-flake8
+linter-pycodestyle
 git-time-machine
 split-diff

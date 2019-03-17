@@ -4,3 +4,4 @@ libssl-dev
 libffi-dev
 python-dev
 python3-venv
+pycodestyle
