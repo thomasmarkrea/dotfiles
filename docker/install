@@ -11,3 +11,7 @@ h1 "setting up docker"
 
 add_reps
 install_packages
+
+# add user to docker group
+# requires reboot
+sudo usermod -aG docker ${USER}
