@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# Run all WSL dotfile installers
+
+cd "$(dirname "$0")"
+. ./resources/functions
+get_sudo
+
+
+title
+
+ln -s /mnt/c/Users/uktre02/Box Sync/CI ${HOME}/CI
+ln -s /mnt/c/Users/uktre02/dev ${HOME}/dev
+ln -s /mnt/c/Users/uktre02/ ${HOME}/win_home
+
+update_sys
+install_dotfiles
+run install_wsl
+
+source ${HOME}/.bashrc

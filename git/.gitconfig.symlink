@@ -4,3 +4,9 @@
 [credential]
 	username = thomasmarkrea
 	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+[core]
+  editor = atom
+[includeIf "gitdir:~/CI/"]
+  path = .gitconfig-w
+[includeIf "gitdir:~/dev/"]
+  path = .gitconfig-w

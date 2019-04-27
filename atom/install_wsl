@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# setting up atom
+
+cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
+
+
+h1 "setting up atom"
+
+install_symlinks "${HOME}/win_home/.atom"
+
+# install atom packages
+h2 "installing atom packages"
+apm i --packages-file package.atom.list > NUL 2>NUL < NUL

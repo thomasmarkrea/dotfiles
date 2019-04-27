@@ -1,0 +1,2 @@
+alias open="/mnt/c/Windows/System32/cmd.exe /c start"
+alias atom='powershell.exe start atom'
