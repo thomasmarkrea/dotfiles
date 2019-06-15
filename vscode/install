@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# setting up vscode
+
+cd "$(dirname "$0")"
+. ../resources/functions
+get_sudo
+
+
+h1 "setting up vscode"
+
+install_packages
+dl_deb
+install_deb
