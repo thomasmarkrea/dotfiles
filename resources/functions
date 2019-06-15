@@ -147,7 +147,7 @@ dl_deb () {
 
   for i in $( sed 's/#.*//' download.list ); do
     info $(basename ${i})
-    wget --directory-prefix=temp ${i} &>> log &&
+    wget --trust-server-names --directory-prefix=temp ${i} &>> log &&
       success $(basename ${i}) ||
         fail $(basename ${i})
   done
