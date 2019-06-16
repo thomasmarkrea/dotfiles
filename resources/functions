@@ -98,7 +98,7 @@ run () {
 
   local name=$1
 
-  find . -mindepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
+  find . -mindepth 2 -maxdepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
 }
 
 add_reps () {

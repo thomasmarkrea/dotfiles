@@ -1,0 +1,22 @@
+"*":
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "linter-csslint"
+      "linter-pycodestyle"
+      "linter"
+    ]
+    telemetryConsent: "limited"
+  editor: {}
+  "exception-reporting":
+    userId: "c6a2e085-871d-4e03-8e77-dba4ce715f81"
+  "ide-python":
+    python: "python3"
+  "linter-stylelint":
+    disableWhenNoConfig: false
+    useStandard: true
+  welcome:
+    showOnStartup: false
+"source.python":
+  editor:
+    tabLength: 4
