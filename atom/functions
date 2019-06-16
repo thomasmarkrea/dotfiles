@@ -1,3 +1,0 @@
-atom_list_update () {
-  apm list --installed --bare > ${HOME}/dotfiles/atom/package.atom.list
-}
