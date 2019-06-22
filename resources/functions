@@ -204,7 +204,7 @@ install_symlinks () {
 
   local dir=${1:-${HOME}}
 
-  for src in $(find ${PWD} -name '*.symlink'); do
+  for src in $(find ${PWD} -maxdepth 1 -name '*.symlink'); do
     if [[ ! $(basename "${src}") == .* ]]; then
       local dst="${dir}/$(basename "${src%.*}")"
       link_file "${src}" "${dir}"

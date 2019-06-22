@@ -10,7 +10,7 @@ get_sudo
 title
 
 update_sys
-install_dotfiles
+install_symlinks
 run install
 
 source ${HOME}/.bashrc
