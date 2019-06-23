@@ -11,7 +11,7 @@ title
 
 # link bashrc
 mv ${HOME}/.bashrc ${HOME}/.bashrc.backup
-ln -s ${PWD}.bashrc.symlink ${HOME}/.bashrc
+ln -s ${PWD}/.bashrc.symlink ${HOME}/.bashrc
 
 update_sys
 run install
