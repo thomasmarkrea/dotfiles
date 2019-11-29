@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# add repository
+# https://brave-browser.readthedocs.io/en/latest/installing-brave.html#linux
+
+cd "$(dirname "$0")"
+. ../resources/functions
+
+
+rep=brave
+source /etc/os-release
+
+info ${rep}
+curl -fsSL https://brave-browser-apt-release.s3.brave.com/brave-core.asc | \
+  sudo apt-key add - &>> log &&
+echo deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ ${VERSION_CODENAME} main | \
+  sudo tee /etc/apt/sources.list.d/brave-browser-release-${VERSION_CODENAME}.list &>> log &&
+success ${rep} || fail ${rep}

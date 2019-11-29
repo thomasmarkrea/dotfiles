@@ -25,8 +25,9 @@ bash dotfiles/install
 
 ## manual steps
 
--   Chrome
-    -   set up Extensions (Authy, LastPass, etc.)
+-   Barve
+    -   update settings
+    -   set up Extensions (Authy, LastPass, Trello, Keep)
 -   insync
     -   set folder, add accounts, start sync
 -   rStudio ([no config file](https://github.com/rstudio/rstudio/issues/1607))

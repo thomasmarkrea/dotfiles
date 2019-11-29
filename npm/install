@@ -9,7 +9,6 @@ get_sudo
 
 h1 "setting up npm"
 
-install_dotfiles
 install_packages
 
 # install nvm
@@ -18,5 +17,4 @@ install_packages
 h2 "installing nvm"
 info "nvm"
 curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash &>> log &&
-  success "nvm" ||
-    fail "nvm"
+  success "nvm" || fail "nvm"

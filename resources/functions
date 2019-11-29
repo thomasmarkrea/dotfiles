@@ -98,7 +98,7 @@ run () {
 
   local name=$1
 
-  find . -mindepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
+  find . -mindepth 2 -maxdepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
 }
 
 add_reps () {
@@ -147,7 +147,7 @@ dl_deb () {
 
   for i in $( sed 's/#.*//' download.list ); do
     info $(basename ${i})
-    wget --directory-prefix=temp ${i} &>> log &&
+    wget --trust-server-names --directory-prefix=temp ${i} &>> log &&
       success $(basename ${i}) ||
         fail $(basename ${i})
   done
@@ -204,7 +204,7 @@ install_symlinks () {
 
   local dir=${1:-${HOME}}
 
-  for src in $(find ${PWD} -name '*.symlink'); do
+  for src in $(find ${PWD} -maxdepth 1 -name '*.symlink'); do
     if [[ ! $(basename "${src}") == .* ]]; then
       local dst="${dir}/$(basename "${src%.*}")"
       link_file "${src}" "${dir}"

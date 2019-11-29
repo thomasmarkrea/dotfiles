@@ -7,13 +7,12 @@ cd "$(dirname "$0")"
 . ../resources/functions
 
 rep=insync
-distro=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
-code_name=$(lsb_release -sc)
+source /etc/os-release
 
 info ${rep}
 sudo apt-key adv \
-  --keyserver hkp://keyserver.ubuntu.com:80 \
+  --keyserver hkp://keyserver.${ID}.com:80 \
   --recv-keys ACCAF35C &>> log &&
-echo deb http://apt.insynchq.com/${distro} ${code_name} non-free contrib | \
+echo deb http://apt.insynchq.com/${ID} ${VERSION_CODENAME} non-free contrib | \
   sudo tee /etc/apt/sources.list.d/${rep}.list &>> log &&
 success ${rep} || fail ${rep}
