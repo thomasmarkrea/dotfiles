@@ -60,8 +60,14 @@ __set_bash_prompt() {
     # Save the exit status of the last command
     local exit="$?"
 
+    # If this is Cmder set the title to cwd
+    local title=""
+    if [[ -n "${ConEmuPID}" ]]; then
+      title="\[\e]9;9;\"\w\"\007\e]9;12\007\]"
+    fi
+
     # PS1 is made from $PreGitPS1 + <git-status> + $PostGitPS1
-    local PreGitPS1="${debian_chroot:+($debian_chroot)}"
+    local PreGitPS1="${title}${debian_chroot:+($debian_chroot)}"
     local PostGitPS1=""
 
     if [[ $__colourise_prompt ]]; then
@@ -174,3 +180,8 @@ fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
+# Node ################################################
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,12 +1,6 @@
 [user]
-	name = Thomas Rea
-	email = thomasmarkrea@gmail.com
-[credential]
-	username = thomasmarkrea
-	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+	name = uktre02
+	email = thomas.rea@ticketmaster.co.uk
 [core]
-  editor = atom
-[includeIf "gitdir:~/CI/"]
-  path = .gitconfig-w
-[includeIf "gitdir:~/dev/"]
-  path = .gitconfig-w
+  editor = code
+	autocrlf = input

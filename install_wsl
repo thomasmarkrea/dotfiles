@@ -9,12 +9,15 @@ get_sudo
 
 title
 
-ln -s /mnt/c/Users/uktre02/Box Sync/CI ${HOME}/CI
+sudo mkdir /mnt/a
+sudo mount -t drvfs A: /mnt/a
+
+ln -s /mnt/c/Users/uktre02/ ${HOME}/winhome
 ln -s /mnt/c/Users/uktre02/dev ${HOME}/dev
-ln -s /mnt/c/Users/uktre02/ ${HOME}/win_home
+ln -s /mnt/c/Users/uktre02/Box\ Sync/CI ${HOME}/ci
+ln -s /mnt/a/TomRea/.aws ${HOME}/.aws
 
 update_sys
-install_dotfiles
 run install_wsl
 
 source ${HOME}/.bashrc
