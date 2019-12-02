@@ -30,7 +30,7 @@ title() {
   # ##
 
   local dir=$(dirname "${BASH_SOURCE[0]}")
-  cat ${dir}/title
+  cat ${dir}/../title
 }
 
 h1 () {
@@ -115,7 +115,7 @@ link_file () {
 
   local src=$1
   local dir=$2
-  local dst="${dir}/$(basename "${src%.*}")"
+  local dst="${dir}/$(basename "${src}")"
 
   # check if file already exists and backup
   if [ -f "${dst}" ]; then
