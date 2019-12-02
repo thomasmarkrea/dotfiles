@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 #
-# Run all dotfile installers
+# install all sections
 
 cd "$(dirname "$0")"
-. ./resources/functions
+source ./resources/functions/main
+
 get_sudo
-
-
 title
 
 # link bashrc
-mv ${HOME}/.bashrc ${HOME}/.bashrc.backup
-ln -s ${PWD}/.bashrc.symlink ${HOME}/.bashrc
+h2 "installing bash profile"
+link_file .bashrc ${HOME}
+source ${HOME}/.bashrc
 
+# upgrade and run setup
 update_sys
 run install
-
-source ${HOME}/.bashrc

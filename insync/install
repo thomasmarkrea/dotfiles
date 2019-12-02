@@ -1,19 +1,9 @@
 #!/usr/bin/env bash
 #
-# setting up insync
+# install script
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up insync"
-
-add_reps
-install_packages
-
-# turn appindicator on
-# https://pop.system76.com/docs/status-icons/
-# `gnome-shell-extension-tool` doesn't seem to work
-# use `gnome-shell-extension-prefs` and turn on manually
-# gnome-shell-extension-tool -e ubuntu-appindicator
+install insync

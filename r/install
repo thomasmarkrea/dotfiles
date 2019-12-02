@@ -1,26 +1,10 @@
 #!/usr/bin/env bash
 #
-# setting up r
+# install script
 
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up r"
-
-# create dir to hold r packages
-mkdir -p ~/.R/library
-
-install_dotfiles
-install_symlinks "${HOME}/.R/snippets"
-add_reps
-install_packages
-dl_deb
-install_deb
-
-# install r packages
-h2 "installing r packages"
-info "installing in background, check 'package.log' for output"
-nohup Rscript package.install &>> package.log &
+install r

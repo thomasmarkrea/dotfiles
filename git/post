@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# post install script
+
+# set up git-cred-helper
+sudo make -sC /usr/share/doc/git/contrib/credential/libsecret

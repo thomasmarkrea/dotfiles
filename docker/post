@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# post install script
+
+# add user to docker group
+# requires reboot
+sudo usermod -aG docker ${USER}

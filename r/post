@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+# post install script
+
+# symlink snippets file
+h2 "installing symlinks"
+link_file r.snippets "${HOME}/.R/snippets"
+
+# install r packages
+h2 "installing r packages"
+info "installing in background, check 'package.log' for output"
+nohup Rscript package.install &>> package.log &

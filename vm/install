@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 #
-# setting up virtual machines
+# install script
 # https://www.makeuseof.com/tag/how-to-use-virtualbox/
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up virtual machines"
-
-install_packages
+install vm

@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 #
-# setting up spotify
+# install script
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up spotify"
-
-add_reps
-install_packages
+install spotify

@@ -1,0 +1,133 @@
+install () {
+  # ##
+  # install section
+  #
+  # Args:
+  #   name - section name
+  # ##
+
+  local name=$1
+  
+  h1 "setting up ${name}"
+
+  install_pre
+  install_dotfiles
+  install_packages
+  install_deb
+  install_post
+}
+
+install_pre () {
+  if [-e pre ]; then bash pre; fi
+}
+
+install_post () {
+  if [-e post ]; then bash post; fi
+}
+
+install_dotfiles () {
+  # ##
+  # symlink files that begin with `.` to `$HOME`
+  #
+  # Args:
+  #   none
+  # ##
+
+  if [ ($(find ${PWD} -name '.*')) ]; then
+  
+    h2 "installing dotfiles"
+
+    local dir=${HOME}
+
+    for src in $(find ${PWD} -name '.*'); do
+      local dst="${dir}/$(basename "${src}")"
+      link_file "${src}" "${dir}"
+    done;
+  
+  fi
+}
+
+install_packages () {
+  # ##
+  # add external repositories and 
+  # install packages from `package.list`
+  #
+  # Args:
+  #   none
+  # ##
+
+  if [ $(find ${PWD} -name '*.rep') ]; then add_reps; fi
+  
+  if [ -e package.list ]; then
+
+    h2 "installing packages from package.list"
+
+    for i in $( sed 's/#.*//' package.list ); do
+      info ${i}
+      sudo apt-get -y install ${i} &>> log &&
+        success ${i} ||
+          fail ${i}
+    done;
+
+  fi
+}
+
+install_deb () {
+  # ##
+  # download and install packages from `download.list`
+  #
+  # Args:
+  #   none
+  # ##
+
+  if [ -e download.list ]; then
+
+    dl_deb
+
+    h2 "installing packages from download.list"
+
+    for i in $( ls ${PWD}/temp/* ); do
+      info $(basename ${i})
+      sudo gdebi --n ${i} &>> log &&
+        success $(basename ${i}) ||
+          fail $(basename ${i})
+    done
+
+    rm -rf temp;
+
+  fi
+}
+
+add_reps () {
+  # ##
+  # run `.rep` files in current dir and update system
+  #
+  # Args:
+  #   none
+  # ##
+
+  h2 "adding repositories"
+
+  find ${PWD} -name '*.rep' | while read rep ; do bash ${rep} ; done
+  update_sys "update"
+}
+
+dl_deb () {
+  # ##
+  # download files from `download.list` into `/temp`
+  #
+  # Args:
+  #   none
+  # ##
+
+  h2 "downloading .deb from download.list"
+
+  mkdir temp
+
+  for i in $( sed 's/#.*//' download.list ); do
+    info $(basename ${i})
+    wget --trust-server-names --directory-prefix=temp ${i} &>> log &&
+      success $(basename ${i}) ||
+        fail $(basename ${i})
+  done
+}

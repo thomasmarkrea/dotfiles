@@ -1,0 +1,17 @@
+. ./utils
+. ./install
+
+run () {
+  # ##
+  # find files in the current dir and one level down and run
+  #
+  # Args:
+  #   name - name of files to run
+  # ##
+
+  local name=$1
+
+  find . -mindepth 2 -maxdepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
+}
+
+

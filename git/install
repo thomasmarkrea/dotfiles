@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
 #
-# setting up git
+# install script
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up git"
-
-install_dotfiles
-install_packages
-
-# set up git-cred-helper
-sudo make -sC /usr/share/doc/git/contrib/credential/libsecret
+install git

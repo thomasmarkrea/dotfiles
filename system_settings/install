@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 #
-# setting up system settings
+# install script
 #
 # TODO:
 # create function to find and run all settings scipts
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up system settings"
-
-bash ./touchpad.settings
+install settings

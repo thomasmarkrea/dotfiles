@@ -10,11 +10,14 @@ Each section contains an `install` file that handles the install and config of t
 
 ## components
 
--   **install**: Shell scripts containing code to install and configure each section. The top level `install` file will find and run all others.
--   **.symlink**: Any file ending `.symlink` will be symlinked to `$HOME` (unless another destination is specified in the `install` file).
--   **.rep**: Any file ending `.rep` should contain code to add a new software repository.
--   **.list**: No code, just lists of files/packages to be downloaded/installed.
--   **resources/functions**: Helper functions used in the `install` files.
+### files
+
+-   **install**: default instalation script, symlinks dot files and installs packages
+-   **pre/post**: pre and post install scipts for anythig that needs to be run before or after the defult script
+-   **. files**: Any file beggining with a `.` will be symlinked to `$HOME`
+    **.rep**: script to add new external software repository
+-   **package.list**: list of packages to be installed
+-   **download.list**: list of packages (.deb files) to download and install
 
 ## install
 
@@ -30,7 +33,7 @@ bash dotfiles/install
     -   set up Extensions (Authy, LastPass, Trello, Keep)
 -   insync
     -   set folder, add accounts, start sync
--   rStudio ([no config file](https://github.com/rstudio/rstudio/issues/1607))
+-   RStudio ([no config file](https://github.com/rstudio/rstudio/issues/1607))
     -   configure (save workspace, .RData, Pane Layout)
 
 ## thanks

@@ -1,10 +1,25 @@
-# helper functions
-
 # set colours
 BLUE=$(tput setaf 4)
 GREEN=$(tput setaf 2)
 RED=$(tput setaf 1)
 NORMAL=$(tput sgr0)
+
+get_sudo() {
+  # ##
+  # get and maintain sudo privileges
+  # https://gist.github.com/cowboy/3118588
+  #
+  # Args:
+  #   none
+  # ##
+
+  sudo -v
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done &> /dev/null &
+}
 
 title() {
   # ##
@@ -86,130 +101,6 @@ fail () {
 
   printf "\r\033[A\033[2K  [${red}FAIL${normal}] ${fl}\n"
   exit
-}
-
-run () {
-  # ##
-  # find files in the current dir and one level down and run
-  #
-  # Args:
-  #   name - name of files to run
-  # ##
-
-  local name=$1
-
-  find . -mindepth 2 -maxdepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
-}
-
-add_reps () {
-  # ##
-  # find '.rep' files in current dir, run them and update system
-  #
-  # Args:
-  #   none
-  # ##
-
-  h2 "adding repositories"
-
-  find ${PWD} -name '*.rep' | while read rep ; do bash ${rep} ; done
-  update_sys "update"
-}
-
-install_packages () {
-  # ##
-  # install packages from 'package.list'
-  #
-  # Args:
-  #   none
-  # ##
-
-  h2 "installing packages from package.list"
-
-  for i in $( sed 's/#.*//' package.list ); do
-    info ${i}
-    sudo apt-get -y install ${i} &>> log &&
-      success ${i} ||
-        fail ${i}
-  done
-}
-
-dl_deb () {
-  # ##
-  # download files from 'download.list' into '/temp'
-  #
-  # Args:
-  #   none
-  # ##
-
-  h2 "downloading .deb from download.list"
-
-  mkdir temp
-
-  for i in $( sed 's/#.*//' download.list ); do
-    info $(basename ${i})
-    wget --trust-server-names --directory-prefix=temp ${i} &>> log &&
-      success $(basename ${i}) ||
-        fail $(basename ${i})
-  done
-}
-
-install_deb () {
-  # ##
-  # use with 'dl_deb'
-  # install packages in '/temp' then remove dir
-  #
-  # Args:
-  #   none
-  # ##
-
-  h2 "installing packages from download.list"
-
-  for i in $( ls ${PWD}/temp/* ); do
-    info $(basename ${i})
-    sudo gdebi --n ${i} &>> log &&
-      success $(basename ${i}) ||
-        fail $(basename ${i})
-  done
-
-  rm -rf temp
-}
-
-install_dotfiles () {
-  # ##
-  # find all files that begin with '.' and symlink to $HOME
-  #
-  # Args:
-  #   none
-  # ##
-
-  h2 "installing dotfiles"
-
-  local dir=${HOME}
-
-  for src in $(find ${PWD} -name '.*'); do
-    local dst="${dir}/$(basename "${src%.*}")"
-    link_file "${src}" "${dir}"
-  done
-}
-
-install_symlinks () {
-  # ##
-  # find '.symlink' files and create links
-  #
-  # Args:
-  #   dir - destination dir for link (default: $HOME)
-  # ##
-
-  h2 "installing symlinks"
-
-  local dir=${1:-${HOME}}
-
-  for src in $(find ${PWD} -maxdepth 1 -name '*.symlink'); do
-    if [[ ! $(basename "${src}") == .* ]]; then
-      local dst="${dir}/$(basename "${src%.*}")"
-      link_file "${src}" "${dir}"
-    fi
-  done
 }
 
 link_file () {
@@ -296,21 +187,4 @@ upgrade () {
   sudo DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade &>> log &&
    success "upgrade" ||
     fail "upgrade"
-}
-
-get_sudo() {
-  # ##
-  # get and maintain sudo privileges
-  # https://gist.github.com/cowboy/3118588
-  #
-  # Args:
-  #   none
-  # ##
-
-  sudo -v
-  while true; do
-    sudo -n true
-    sleep 60
-    kill -0 "$$" || exit
-  done &> /dev/null &
 }

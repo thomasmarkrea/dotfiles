@@ -4,10 +4,10 @@
 # https://www.insynchq.com/downloads
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+source /etc/os-release
 
 rep=insync
-source /etc/os-release
 
 info ${rep}
 sudo apt-key adv \

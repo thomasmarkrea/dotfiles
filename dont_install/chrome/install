@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 #
-# setting up chrome
+# install script
 
 cd "$(dirname "$0")"
-. ../resources/functions
+source ../resources/functions/main
+
 get_sudo
-
-
-h1 "setting up chrome"
-
-install_packages
-dl_deb
-install_deb
+install chrome
