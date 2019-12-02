@@ -1,5 +1,6 @@
-. ./utils
-. ./install
+func_dir = $(dirname "${BASH_SOURCE[0]}")
+source ${func_dir}/utils
+source ${func_dir}/install
 
 run () {
   # ##
