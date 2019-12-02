@@ -33,7 +33,7 @@ install_dotfiles () {
   #   none
   # ##
 
-  if [ ($(find ${PWD} -name '.*')) ]; then
+  if [ "$(find ${PWD} -name '.*')" ]; then
   
     h2 "installing dotfiles"
 
@@ -56,7 +56,7 @@ install_packages () {
   #   none
   # ##
 
-  if [ $(find ${PWD} -name '*.rep') ]; then add_reps; fi
+  if [ "$(find ${PWD} -name '*.rep')" ]; then add_reps; fi
   
   if [ -e package.list ]; then
 
