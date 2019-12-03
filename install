@@ -2,7 +2,7 @@
 #
 # install all sections
 
-local dir = "$(dirname $(readlink -f "$0"))"
+dir = "$(dirname $(readlink -f "$0"))"
 
 cd ${dir}
 source ./resources/functions/main
