@@ -2,7 +2,9 @@
 #
 # install all sections
 
-cd "$(dirname "$0")"
+local dir = "$(dirname $(readlink -f "$0"))"
+
+cd ${dir}
 source ./resources/functions/main
 
 get_sudo
@@ -10,7 +12,7 @@ title
 
 # link bashrc
 h2 "installing bash profile"
-link_file .bashrc ${HOME}
+link_file ${dir}/.bashrc ${HOME}
 source ${HOME}/.bashrc
 
 # upgrade and run setup

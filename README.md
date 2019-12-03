@@ -15,7 +15,7 @@ Each section contains an `install` file that handles the install and config of t
 -   **install**: default instalation script, symlinks dot files and installs packages
 -   **pre/post**: pre and post install scipts for anythig that needs to be run before or after the defult script
 -   **. files**: Any file beggining with a `.` will be symlinked to `$HOME`
-    **.rep**: script to add new external software repository
+-   **.rep**: script to add new external software repository
 -   **package.list**: list of packages to be installed
 -   **download.list**: list of packages (.deb files) to download and install
 
