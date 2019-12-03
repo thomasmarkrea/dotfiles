@@ -2,10 +2,12 @@
 #
 # pre install script
 
+source ../resources/functions/main 
+
 # create dir to hold r packages
 h2 "creating r package dir"
 
-local pkg_dir = ${HOME}/.R/library
+pkg_dir=${HOME}/.R/library
 
 info ${pkg_dir}
 mkdir -p ${pkg_dir} && success ${pkg_dir} || fail ${pkg_dir}

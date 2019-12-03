@@ -2,6 +2,8 @@
 #
 # post install script
 
+source ../resources/functions/main
+
 # symlink snippets file
 h2 "installing symlinks"
 link_file r.snippets "${HOME}/.R/snippets"
