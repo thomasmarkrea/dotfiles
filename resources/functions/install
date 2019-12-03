@@ -18,11 +18,11 @@ install () {
 }
 
 install_pre () {
-  if [-e pre ]; then bash pre; fi
+  if [ -e pre ]; then bash pre; fi
 }
 
 install_post () {
-  if [-e post ]; then bash post; fi
+  if [ -e post ]; then bash post; fi
 }
 
 install_dotfiles () {
