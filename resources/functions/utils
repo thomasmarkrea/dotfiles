@@ -184,7 +184,7 @@ upgrade () {
   # ##
 
   info "upgrade"
-  sudo DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical apt-get -q -y -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade &>> log &&
+  sudo DEBIAN_FRONTEND=noninteractive DEBIAN_PRIORITY=critical apt-get -q -y --allow-downgrades -o "Dpkg::Options::=--force-confdef" -o "Dpkg::Options::=--force-confold" dist-upgrade &>> log &&
    success "upgrade" ||
     fail "upgrade"
 }
