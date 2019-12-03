@@ -11,8 +11,8 @@ rep=r
 
 info ${rep}
 sudo apt-key adv \
-  --keyserver hkp://keyserver.${ID}.com:80 \
+  --keyserver hkp://keyserver.ubuntu.com:80 \
   --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 &>> log &&
-echo deb https://cloud.r-project.org/bin/linux/${ID} ${VERSION_CODENAME}-cran35/ | \
+echo "deb https://cloud.r-project.org/bin/linux/${ID} ${VERSION_CODENAME}-cran35/" | \
   sudo tee /etc/apt/sources.list.d/${rep}.list &>> log &&
 success "r" || fail "r"
