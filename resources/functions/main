@@ -2,8 +2,7 @@
 #
 # functions
 
-dir="$(dirname $(readlink -f "$0"))"
-cd ${dir}
+cd "$(dirname "$0")"
 
 source ./utils
 source ./install
