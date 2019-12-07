@@ -2,10 +2,10 @@
 #
 # functions
 
-dir=$(dirname "${BASH_SOURCE[0]}")
+dir_func=$(dirname "${BASH_SOURCE[0]}")
 
-source ${dir}/utils
-source ${dir}/install
+source ${dir_func}/utils
+source ${dir_func}/install
 
 run () {
   # ##
