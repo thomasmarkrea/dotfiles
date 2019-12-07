@@ -2,10 +2,14 @@
 #
 # functions
 
-cd "$(dirname "$0")"
+dir="$(dirname $(readlink -f "$0"))"
+func_dir=$(dirname "${BASH_SOURCE[0]}")
 
-source ./utils
-source ./install
+echo ${dir}
+echo ${func_dir}
+
+source ${dir}/utils
+source ${dir}/install
 
 run () {
   # ##
@@ -19,5 +23,3 @@ run () {
 
   find . -mindepth 2 -maxdepth 2 -name ${name} | while read installer ; do bash ${installer} ; done
 }
-
-
