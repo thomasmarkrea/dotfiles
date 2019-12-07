@@ -1,6 +1,12 @@
-func_dir=$(dirname "${BASH_SOURCE[0]}")
-source ${func_dir}/utils
-source ${func_dir}/install
+#!/usr/bin/env bash
+#
+# functions
+
+dir="$(dirname $(readlink -f "$0"))"
+cd ${dir}
+
+source ./utils
+source ./install
 
 run () {
   # ##
