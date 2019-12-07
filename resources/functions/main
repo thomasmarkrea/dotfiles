@@ -2,11 +2,7 @@
 #
 # functions
 
-dir="$(dirname $(readlink -f "$0"))"
-func_dir=$(dirname "${BASH_SOURCE[0]}")
-
-echo ${dir}
-echo ${func_dir}
+dir=$(dirname "${BASH_SOURCE[0]}")
 
 source ${dir}/utils
 source ${dir}/install
