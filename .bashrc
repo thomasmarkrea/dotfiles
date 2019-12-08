@@ -6,6 +6,7 @@ case $- in
       *) return;;
 esac
 
+
 # history settings ############################################################
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -157,9 +158,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f ~/.bash_aliases_wsl ]; then
-    . ~/.bash_aliases_wsl
-fi
 
 # tab completion ##############################################################
 # enable programmable completion features (you don't need to enable
@@ -173,6 +171,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
 # Functions ###################################################################
 # You may want to put all your additions into a separate file like
 # ~/.bash_functions, instead of adding them here directly.
@@ -180,6 +179,7 @@ fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
 
 # Node ################################################
 export NVM_DIR="$HOME/.nvm"

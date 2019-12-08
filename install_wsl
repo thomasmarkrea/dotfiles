@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# install all WSL sections
+
+dir="$(dirname $(readlink -f "$0"))"
+
+cd ${dir}
+source ./resources/functions/main
+
+get_sudo
+title
+
+# link bashrc
+h2 "installing bash profile"
+link_file ${dir}/.bashrc ${HOME}
+source ${HOME}/.bashrc
+
+# mount a drive
+sudo mkdir /mnt/a
+sudo mount -t drvfs A: /mnt/a
+
+# link Windows drives to home
+ln -s /mnt/c/Users/uktre02/ ${HOME}/winhome
+ln -s /mnt/c/Users/uktre02/Box\ Sync/ ${HOME}/box
+
+ln -s /mnt/c/Users/uktre02/dev ${HOME}/dev
+ln -s /mnt/c/Users/uktre02/Box\ Sync/CI/anlysis ${HOME}/anlysis
+
+ln -s /mnt/a/TomRea/.aws ${HOME}/.aws
+
+# upgrade and run setup
+update_sys
+bash ./git/install
+bash ./python/install
+bash ./node/install

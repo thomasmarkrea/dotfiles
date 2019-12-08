@@ -1,6 +1,16 @@
-[user]
-	name = uktre02
-	email = thomas.rea@ticketmaster.co.uk
+# core settings
 [core]
-  editor = code
+  	fileMode = false
 	autocrlf = input
+	editor = code
+
+# personal user
+[include]
+	path = .gitconfig-p
+
+# work user
+[includeif "gitdir:**/CI/"]
+	path = .gitconfig-w
+
+[includeif "gitdir:**/dev/"]
+	path = .gitconfig-w

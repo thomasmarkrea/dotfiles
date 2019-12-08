@@ -6,4 +6,4 @@ cd "$(dirname "$0")"
 source ../resources/functions/main
 
 get_sudo
-install npm
+install node

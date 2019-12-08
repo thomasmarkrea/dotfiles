@@ -3,5 +3,3 @@ python3-venv
 python3-pip
 build-essential
 libssl-dev
-libffi-dev
-pycodestyle
