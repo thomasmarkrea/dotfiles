@@ -24,7 +24,7 @@ ln -s /mnt/c/Users/uktre02/ ${HOME}/winhome
 ln -s /mnt/c/Users/uktre02/Box\ Sync/ ${HOME}/box
 
 ln -s /mnt/c/Users/uktre02/dev ${HOME}/dev
-ln -s /mnt/c/Users/uktre02/Box\ Sync/CI/anlysis ${HOME}/anlysis
+ln -s /mnt/c/Users/uktre02/Box\ Sync/CI/analysis ${HOME}/analysis
 
 ln -s /mnt/a/TomRea/.aws ${HOME}/.aws
 
@@ -33,3 +33,12 @@ update_sys
 bash ./git/install
 bash ./python/install
 bash ./node/install
+
+# r setup
+mkdir -p ~/winhome/.R/library
+mkdir -p ~/winhome/.R/snippets
+
+cp ./r/.Rprofile ~/winhome/
+cp ./r/.Renviron ~/winhome/
+
+cp ./r/r.snippets ~/winhome/.R/snippets
