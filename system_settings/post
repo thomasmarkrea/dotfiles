@@ -2,4 +2,8 @@
 #
 # post install script
 
+# add custom PATH
+cat path >> ~/.pam_environment 
+
+# touchpad settings
 bash touchpad.settings
