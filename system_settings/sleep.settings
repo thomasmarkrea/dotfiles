@@ -1,0 +1,3 @@
+# default to deep sleep
+# https://github.com/thomasmarkrea/dotfiles/issues/3
+sudo kernelstub -a "mem_sleep_default=deep"
