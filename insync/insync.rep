@@ -5,14 +5,18 @@
 
 cd "$(dirname "$0")"
 source ../resources/functions/main
-source /etc/os-release
 
 rep=insync
 
 info ${rep}
+
 sudo apt-key adv \
-  --keyserver hkp://keyserver.ubuntu.com:80 \
-  --recv-keys ACCAF35C &>> log &&
-echo "deb http://apt.insync.io/${ID} ${VERSION_CODENAME} non-free contrib" | \
-  sudo tee /etc/apt/sources.list.d/${rep}.list &>> log &&
+  --keyserver keyserver.ubuntu.com \
+  --recv-keys ACCAF35C \
+  &>> log \
+&&
+echo "deb http://apt.insync.io/ubuntu focal non-free contrib" | \
+  sudo tee /etc/apt/sources.list.d/${rep}.list \
+  &>> log \
+&&
 success ${rep} || fail ${rep}

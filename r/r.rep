@@ -5,14 +5,18 @@
 
 cd "$(dirname "$0")"
 source ../resources/functions/main
-source /etc/os-release
 
 rep=r
 
 info ${rep}
+
 sudo apt-key adv \
-  --keyserver hkp://keyserver.ubuntu.com:80 \
-  --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 &>> log &&
-echo "deb https://cloud.r-project.org/bin/linux/${ID} ${VERSION_CODENAME}-cran35/" | \
-  sudo tee /etc/apt/sources.list.d/${rep}.list &>> log &&
-success "r" || fail "r"
+  --keyserver keyserver.ubuntu.com \
+  --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+  &>> log \
+&&
+echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | \
+  sudo tee /etc/apt/sources.list.d/${rep}.list \
+  &>> log \
+&&
+success ${rep} || fail ${rep}

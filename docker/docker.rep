@@ -6,13 +6,17 @@
 
 cd "$(dirname "$0")"
 source ../resources/functions/main
-source /etc/os-release
 
 rep=docker
 
 info ${rep}
+
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo apt-key add - &>> log &&
-echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu ${VERSION_CODENAME} stable" | \
-  sudo tee /etc/apt/sources.list.d/${rep}.list &>> log &&
+  sudo apt-key add - \
+  &>> log \
+&&
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" | \
+  sudo tee /etc/apt/sources.list.d/${rep}.list \
+  &>> log \
+&&
 success ${rep} || fail ${rep}

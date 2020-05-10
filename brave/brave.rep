@@ -5,13 +5,19 @@
 
 cd "$(dirname "$0")"
 source ../resources/functions/main
-source /etc/os-release
 
 rep=brave
 
 info ${rep}
+
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | \
-  sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - &>> log &&
+  sudo apt-key \
+    --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg \
+    add - \
+  &>> log \
+&&
 echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | \
-  sudo tee /etc/apt/sources.list.d/brave-browser-release.list &>> log &&
+  sudo tee /etc/apt/sources.list.d/${rep}.list \
+  &>> log \
+&&
 success ${rep} || fail ${rep}
