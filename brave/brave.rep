@@ -10,8 +10,8 @@ source /etc/os-release
 rep=brave
 
 info ${rep}
-curl -fsSL https://brave-browser-apt-release.s3.brave.com/brave-core.asc | \
-  sudo apt-key add - &>> log &&
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ ${VERSION_CODENAME} main" | \
-  sudo tee /etc/apt/sources.list.d/brave-browser-release-${VERSION_CODENAME}.list &>> log &&
+curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | \
+  sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - &>> log &&
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | \
+  sudo tee /etc/apt/sources.list.d/brave-browser-release.list &>> log &&
 success ${rep} || fail ${rep}
