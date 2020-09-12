@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# add repository
+# https://cloud.google.com/sdk/docs#deb
+
+cd "$(dirname "$0")"
+source ../resources/functions/main
+
+rep=gcp
+
+info ${rep}
+
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+  sudo apt-key add - &>> log &&
+echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | \
+  sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list &>> log &&
+success ${rep} || fail ${rep}
