@@ -4,13 +4,9 @@
 	autocrlf = input
 	editor = code
 
-# personal user
-[include]
-	path = .gitconfig-p
-
-# work user
-[includeif "gitdir:**/CI/"]
-	path = .gitconfig-w
-
-[includeif "gitdir:**/dev/"]
-	path = .gitconfig-w
+[user]
+	name = Tom Rea
+	email = a@tomrea.uk
+[credential]
+	username = thomasmarkrea
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
