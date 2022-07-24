@@ -10,13 +10,10 @@ rep=r
 
 info ${rep}
 
-sudo apt-key adv \
-  --keyserver keyserver.ubuntu.com \
-  --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 \
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo gpg --dearmor -o /usr/share/keyrings/r-project.gpg \
   &>> log \
 &&
-echo "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" | \
-  sudo tee /etc/apt/sources.list.d/${rep}.list \
+echo "deb [signed-by=/usr/share/keyrings/r-project.gpg] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" | sudo tee -a /etc/apt/sources.list.d/r-project.list \
   &>> log \
 &&
 success ${rep} || fail ${rep}
